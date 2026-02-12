@@ -433,3 +433,287 @@ body {
     gap: 12px;
   }
 }
+
+.footer-link {
+  background: none;
+  border: none;
+  color: #6B7280;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-link:hover {
+  color: #2563EB;
+  text-decoration: underline;
+}
+
+/* ===== SIGNUP PAGE SPECIFIC STYLES ===== */
+
+/* Signup Card */
+.signup-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.signup-description {
+  color: #6B7280;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* ===== SIGNUP PAGE SPECIFIC STYLES ===== */
+
+/* Signup Card */
+.signup-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.signup-description {
+  color: #6B7280;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* Signup Form - Uses same .login-form class */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Error States - Uses Risk Red (#EF4444) */
+.input-error {
+  border-color: #EF4444 !important;
+}
+
+.input-error:focus {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+  color: #EF4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Terms Checkbox */
+.terms-text {
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.terms-text a {
+  color: #2563EB; /* Primary Blue */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms-text a:hover {
+  color: #1E3A8A; /* Deep Blue */
+  text-decoration: underline;
+}
+
+/* Signup Button - Changed to Primary Blue */
+.signup-button {
+  background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%); /* Primary Blue gradient */
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.signup-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
+}
+
+.signup-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.signup-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Signup Footer */
+.signup-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #E5E7EB;
+  text-align: center;
+}
+
+/* Simple Login Link */
+.login-link-container {
+  margin-top: 20px;
+}
+
+.login-link {
+  background: none;
+  border: none;
+  color: #2563EB; /* Primary Blue */
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #1E3A8A; /* Deep Blue */
+  text-decoration: underline;
+}
+
+/* Demo Button for Signup - Updated to use Secondary Teal */
+.signup-form .demo-button:hover {
+  background: #F9FAFB;
+  border-color: #14B8A6; /* Secondary Teal */
+  color: #14B8A6; /* Secondary Teal */
+}
+
+/* Demo Section for Signup */
+.signup-form .demo-section {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #E5E7EB;
+  margin-top: 20px;
+}
+
+/* Responsive Adjustments for Signup */
+@media (max-width: 480px) {
+  .signup-card {
+    padding: 24px;
+  }
+  
+  .terms-text {
+    font-size: 13px;
+  }
+}
+
+/* Additional styles for the components */
+
+/* AdminBadge variants */
+.bg-gradient-to-r {
+  background-size: 200% auto;
+  transition: background-position 0.5s ease;
+}
+
+.bg-gradient-to-r:hover {
+  background-position: right center;
+}
+
+/* InputField error state enhancement */
+.form-input.input-error {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* LogoHeader size variations */
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+
+.mb-4 { margin-bottom: 16px; }
+.mb-8 { margin-bottom: 32px; }
+.mb-12 { margin-bottom: 48px; }
+
+.w-8 { width: 32px; }
+.h-8 { height: 32px; }
+.w-12 { width: 48px; }
+.h-12 { height: 48px; }
+.w-16 { width: 64px; }
+.h-16 { height: 64px; }
+
+.w-5 { width: 20px; }
+.h-5 { height: 20px; }
+.w-6 { width: 24px; }
+.h-6 { height: 24px; }
+.w-10 { width: 40px; }
+.h-10 { height: 40px; }
+
+.text-xl { font-size: 20px; }
+.text-2xl { font-size: 24px; }
+.text-3xl { font-size: 32px; }
+
+.text-xs { font-size: 12px; }
+.text-sm { font-size: 14px; }
+
+/* Button hover shadows */
+.hover\:shadow-blue-200:hover {
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
+}
+
+.hover\:shadow-teal-200:hover {
+  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.25);
+}
+
+.hover\:shadow-red-200:hover {
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.25);
+}
+
+.hover\:shadow-yellow-200:hover {
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+}
+
+/* Footer links as buttons */
+.footer-link {
+  background: none;
+  border: none;
+  color: #6B7280;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.footer-link:hover {
+  color: #2563EB;
+  text-decoration: underline;
+}
