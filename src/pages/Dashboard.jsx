@@ -11,6 +11,7 @@ import DonutChart from "../components/dashboard/DonutChart";
 import MLInsights from "../components/dashboard/MLInsights";
 import AlertsPanel from "../components/dashboard/AlertsPanel";
 import QuickAccess from "../components/dashboard/QuickAccess";
+import MLPerformancePage from "../components/dashboard/MLPerformancePage";
 
 function Dashboard({ setPage }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -18,10 +19,10 @@ function Dashboard({ setPage }) {
 
   // Mock data from system description
   const metrics = [
-    { title: "Total Students", value: 324, change: "+12 this month", icon: "👥" },
-    { title: "High-Risk Users", value: 47, change: "14.5% of total", icon: "⚠️", risk: true },
-    { title: "Avg Daily Spend", value: "₱182", change: "-3.2% vs last week", icon: "💰" },
-    { title: "Allowance Sustainability", value: "68%", change: "+2.1% improvement", icon: "📊" },
+    { title: "Active Users", value: 324, change: "+12 this week", icon: "👥" },
+    { title: "High-Risk Predictions", value: 47, change: "Flagged today", icon: "⚠️", risk: true },
+    { title: "Recommendation Accuracy", value: "89%", change: "+3% improvement", icon: "🎯" },
+    { title: "AI Confidence Score", value: "92%", change: "Model stable", icon: "🤖" },
   ];
 
   const spenderCategories = [
@@ -32,44 +33,60 @@ function Dashboard({ setPage }) {
   ];
 
   const weeklyTrends = [
-    { day: "Mon", amount: 145 },
-    { day: "Tue", amount: 162 },
-    { day: "Wed", amount: 158 },
-    { day: "Thu", amount: 178 },
-    { day: "Fri", amount: 195 },
-    { day: "Sat", amount: 210 },
-    { day: "Sun", amount: 125 },
+    { day: "Mon", actual: 145, predicted: 150 },
+    { day: "Tue", actual: 162, predicted: 160 },
+    { day: "Wed", actual: 158, predicted: 165 },
+    { day: "Thu", actual: 178, predicted: 170 },
+    { day: "Fri", actual: 195, predicted: 190 },
+    { day: "Sat", actual: 210, predicted: 205 },
+    { day: "Sun", actual: 125, predicted: 130 },
   ];
 
+
+  // What students are most likely to spend their money on next,
+  // broken down by day / week / month / year predictions (percent chance)
   const mlPredictions = [
-    { model: "Spending Pattern", accuracy: 94, status: "Optimal" },
-    { model: "Risk Classification", accuracy: 87, status: "Good" },
-    { model: "Allowance Sustainability", accuracy: 91, status: "Optimal" },
-    { model: "Cluster Accuracy", accuracy: 82, status: "Retraining" },
+    {
+      model: "Food & Meals",
+      day: 68,
+      week: 78,
+      month: 84,
+      year: 80,
+      trackingSpending: true,
+    },
+    {
+      model: "Transport & Commute",
+      day: 32,
+      week: 54,
+      month: 61,
+      year: 58,
+      trackingSpending: true,
+    },
+    {
+      model: "School Supplies",
+      day: 18,
+      week: 36,
+      month: 49,
+      year: 52,
+      trackingSpending: true,
+    },
+    {
+      model: "Non-essential / Impulse Buys",
+      day: 22,
+      week: 39,
+      month: 47,
+      year: 55,
+      trackingSpending: false,
+    },
   ];
 
   const recentAlerts = [
-    { 
-      message: "15% of students may run out of allowance early this week", 
-      severity: "warning",
-      time: "2h ago"
-    },
-    { 
-      message: "High-risk spending increased by 8% this week", 
-      severity: "risk",
-      time: "5h ago"
-    },
-    { 
-      message: "ML model retraining completed with 91% accuracy", 
-      severity: "success",
-      time: "1d ago"
-    },
-    {
-      message: "3 new clusters detected in spending behavior",
-      severity: "info",
-      time: "2d ago"
-    }
+    { message: "12 users predicted to overspend today", severity: "warning", time: "1h ago" },
+    { message: "Impulse spending detected in 8 users", severity: "risk", time: "3h ago" },
+    { message: "ML retraining completed (91% accuracy)", severity: "success", time: "1d ago" },
+    { message: "Weekend overspending risk increased by 18%", severity: "info", time: "2d ago" },
   ];
+
 
   // Handlers
   const handleLogout = () => {
@@ -92,6 +109,42 @@ function Dashboard({ setPage }) {
     setActiveTab(actionId);
   };
 
+  const renderMainContent = () => {
+    if (activeTab === "ml") {
+      return (
+        <MLPerformancePage
+          models={mlPredictions}
+          timeRange={timeRange}
+          onBackToOverview={() => setActiveTab("overview")}
+        />
+      );
+    }
+
+    // Default overview content
+    return (
+      <>
+        {/* Key Metrics Grid */}
+        <MetricsGrid metrics={metrics} />
+
+        {/* Charts Row */}
+        <div className="charts-row">
+          <SpendingChart data={weeklyTrends} />
+          <DonutChart data={spenderCategories} />
+        </div>
+
+        {/* Second Row - ML Insights & Alerts */}
+        <div className="insights-row">
+          <MLInsights
+            models={mlPredictions}
+            timeRange={timeRange}
+            onViewDetails={() => setActiveTab("ml")}
+          />
+          <AlertsPanel alerts={recentAlerts} />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="dashboard-wrapper">
       {/* Sidebar Component */}
@@ -110,20 +163,7 @@ function Dashboard({ setPage }) {
           onExport={handleExport}
         />
 
-        {/* Key Metrics Grid */}
-        <MetricsGrid metrics={metrics} />
-
-        {/* Charts Row */}
-        <div className="charts-row">
-          <SpendingChart data={weeklyTrends} />
-          <DonutChart data={spenderCategories} />
-        </div>
-
-        {/* Second Row - ML Insights & Alerts */}
-        <div className="insights-row">
-          <MLInsights models={mlPredictions} />
-          <AlertsPanel alerts={recentAlerts} />
-        </div>
+        {renderMainContent()}
 
         {/* Quick Access Component */}
         <QuickAccess onAction={handleQuickAction} />

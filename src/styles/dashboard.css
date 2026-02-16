@@ -450,6 +450,12 @@
   color: #111827;
 }
 
+.card-subtitle {
+  font-size: 13px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
 /* Model List */
 .model-list {
   display: flex;
@@ -523,6 +529,47 @@
   font-weight: 600;
   color: #111827;
   min-width: 40px;
+}
+
+.tracking-label {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+.tracking-yes {
+  color: #22C55E;
+}
+
+.tracking-no {
+  color: #EF4444;
+}
+
+.time-breakdown {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.time-pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.time-label {
+  color: #6B7280;
+}
+
+.time-value {
+  font-weight: 600;
+  color: #111827;
 }
 
 /* Alert List */
@@ -665,6 +712,57 @@
 .view-all-btn:hover {
   background: #2563EB10;
   border-color: #2563EB;
+}
+
+/* ML Performance full-page view */
+.ml-performance-page {
+  margin-top: 8px;
+}
+
+.ml-performance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ml-performance-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.ml-performance-subtitle {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.ml-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ml-back-button {
+  padding: 8px 14px;
+  background: white;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ml-back-button:hover {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+.ml-performance-card {
+  margin-top: 4px;
 }
 
 /* Footer */

@@ -65,7 +65,7 @@ function LogoHeader({ subtitle = "Financial Analytics Dashboard", size = "medium
         </div>
         <div className="logo-text">
           <h1 className={`font-bold text-blue-900 ${styles.title}`}>
-            AllowancePal
+            BudgetPal
           </h1>
           <p className={`logo-subtitle ${styles.subtitle}`}>
             {subtitle}
