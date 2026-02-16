@@ -1,4 +1,5 @@
 import AdminBadge from "../AdminBadge";
+import "../../styles/dashboard.css";
 
 const RANGE_LABELS = {
   day: "Day",
@@ -7,14 +8,30 @@ const RANGE_LABELS = {
   year: "Year",
 };
 
-function MLPerformancePage({ models, timeRange, onBackToOverview }) {
+function MLPerformancePage({ models = [], timeRange = "week", onBackToOverview }) {
   const getBarColor = (value) => {
     if (value >= 70) return "#22C55E"; // Success Green
     if (value >= 40) return "#14B8A6"; // Secondary Teal
     return "#F59E0B"; // Warning Orange
   };
 
-  const getPrimaryValue = (model) => model[timeRange] ?? 0;
+  const getPrimaryValue = (model) => {
+    if (!model || !timeRange) return 0;
+    return model[timeRange] ?? 0;
+  };
+
+  if (!models || models.length === 0) {
+    return (
+      <section className="ml-performance-page">
+        <div className="ml-performance-header">
+          <div>
+            <h2>Upcoming Spending Tracker</h2>
+            <p className="ml-performance-subtitle">No data available</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="ml-performance-page">
